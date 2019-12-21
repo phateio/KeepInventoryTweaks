@@ -1,0 +1,14 @@
+name: ${name}
+version: ${version}
+api-version: 1.13
+description: '${description}'
+author: WhiteCat
+# depend: []
+main: ${main_class}
+#commands:
+#  test:
+#    description: main command
+#    usage: /<command> some...
+#permissions:
+#  test.reload:
+#    default: op

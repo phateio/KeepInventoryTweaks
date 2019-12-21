@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group package_group as String
+version plugin_version as String
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+//    maven {
+//        // spigot
+//        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+//    }
+//    maven {
+//        // bungee
+//        url "https://oss.sonatype.org/content/groups/public/"
+//    }
+    maven {
+        // paper
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+
+    mavenLocal()
+}
+
+dependencies {
+    implementation group: "com.destroystokyo.paper", name: "paper-api", version: spigot_version
+//    implementation group: "com.destroystokyo.paper", name: "paper", version: spigot_version
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+processResources {
+
+    inputs.property "version", project.version
+    inputs.property "name", plugin_name as String
+    inputs.property "description", plugin_description as String
+    inputs.property "main_class", plugin_main_class as String
+    inputs.property "buildDate", new Date()
+
+
+    from(sourceSets.main.resources.srcDirs) {
+        expand([
+                version    : version,
+                name       : plugin_name,
+                description: plugin_description,
+                main_class : plugin_main_class,
+                buildDate  : new Date()
+        ])
+        include 'plugin.yml'
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'plugin.yml'
+    }
+}

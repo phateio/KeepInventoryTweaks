@@ -1,0 +1,14 @@
+/.idea
+*.iml
+*.ipr
+*.iws
+
+bin
+build
+target
+.gradle
+out
+run
+
+/dependency-reduced-pom.xml
+*-private.sh
